@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>交易员成长计划 · 一套系统纵向训练</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #1a1a2e;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --cream: #f5f0e8;
+    --cream-dark: #ebe5d8;
+    --gray: #6b6b7b;
+    --gray-light: #9a9aaa;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.8;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 8px 24px;
+    margin-bottom: 48px;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(32px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+
+  .hero h1 span {
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--gray-light);
+    font-weight: 300;
+    margin-bottom: 60px;
+    letter-spacing: 1px;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 16px 48px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .hero-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    color: var(--gray);
+    font-size: 12px;
+    letter-spacing: 2px;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(8px); opacity: 1; }
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    padding: 100px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  section.dark {
+    background: var(--ink);
+    color: var(--cream);
+    max-width: 100%;
+    padding: 100px 24px;
+  }
+
+  section.dark .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  section.cream {
+    background: var(--cream);
+    max-width: 100%;
+    padding: 100px 24px;
+  }
+
+  section.cream .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .section-num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+    margin-bottom: -20px;
+  }
+
+  section.dark .section-num {
+    color: rgba(201,168,76,0.1);
+  }
+
+  h2 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 40px;
+  }
+
+  h2 em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* ===== PAIN SECTION ===== */
+  .pain-grid {
+    display: grid;
+    gap: 24px;
+  }
+
+  .pain-item {
+    padding: 32px;
+    background: rgba(26,26,46,0.03);
+    border-left: 3px solid var(--gold);
+  }
+
+  .pain-item-num {
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .pain-item p {
+    font-size: 16px;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+
+  .pain-conclusion {
+    margin-top: 48px;
+    padding: 32px;
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+  }
+
+  .pain-conclusion p {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  /* ===== SYSTEMS ===== */
+  .systems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  .system-card {
+    background: var(--white);
+    padding: 48px 36px;
+    position: relative;
+  }
+
+  .system-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gold);
+  }
+
+  .system-card h3 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .system-card .tag {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .system-card p {
+    color: var(--gray);
+    margin-bottom: 24px;
+    font-size: 15px;
+  }
+
+  .system-flow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--gray-light);
+    flex-wrap: wrap;
+  }
+
+  .system-flow span {
+    color: var(--gold);
+  }
+
+  .system-fit {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--cream-dark);
+    font-size: 13px;
+    color: var(--gray);
+  }
+
+  .system-fit strong {
+    color: var(--ink);
+  }
+
+  /* ===== STEPS ===== */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 768px) {
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .step-card {
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--white);
+    position: relative;
+  }
+
+  .step-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: var(--gold);
+  }
+
+  .step-num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-card h4 {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .step-card p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* ===== HONESTY ===== */
+  .honesty-list {
+    margin-top: 48px;
+  }
+
+  .honesty-item {
+    display: flex;
+    gap: 32px;
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .honesty-item:last-child {
+    border-bottom: none;
+  }
+
+  .honesty-no {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 80px;
+  }
+
+  .honesty-content h4 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--cream);
+  }
+
+  .honesty-content p {
+    color: var(--gray-light);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .honesty-deliver {
+    margin-top: 64px;
+    padding: 48px;
+    border: 1px solid rgba(201,168,76,0.2);
+    text-align: center;
+  }
+
+  .honesty-deliver h4 {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 4px;
+    margin-bottom: 24px;
+  }
+
+  .honesty-deliver p {
+    color: var(--cream);
+    font-size: 18px;
+    line-height: 2;
+  }
+
+  /* ===== COACH ===== */
+  .coach-content {
+    margin-top: 48px;
+  }
+
+  .coach-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .coach-title {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 40px;
+  }
+
+  .coach-points {
+    display: grid;
+    gap: 24px;
+  }
+
+  .coach-point {
+    padding: 28px 32px;
+    background: rgba(26,26,46,0.03);
+    border-left: 2px solid var(--gold);
+  }
+
+  .coach-point p {
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+
+  /* ===== BOOKS ===== */
+  .books-shelf {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    margin-top: 56px;
+    align-items: stretch;
+  }
+
+  @media (max-width: 900px) {
+    .books-shelf { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .books-shelf { grid-template-columns: 1fr; }
+  }
+
+  .book {
+    background: var(--white);
+    padding: 36px 24px 32px;
+    text-align: center;
+    border: 1px solid var(--cream-dark);
+    border-top: 4px solid var(--gold);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .book:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(26,26,46,0.10);
+  }
+
+  .book-cover {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+  }
+
+  .book-cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 6%;
+    right: 6%;
+    height: 5px;
+    background: linear-gradient(to bottom, rgba(26,26,46,0.18), transparent);
+    border-radius: 50%;
+  }
+
+  .book-cover img {
+    max-height: 250px;
+    max-width: 100%;
+    width: auto;
+    box-shadow: -10px 6px 20px rgba(26,26,46,0.22), 0 2px 6px rgba(26,26,46,0.12);
+    transition: transform 0.35s ease;
+  }
+
+  .book:hover .book-cover img {
+    transform: translateY(-6px) rotate(-1.5deg);
+  }
+
+  .book h4 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 19px;
+    margin-bottom: 6px;
+  }
+
+  .book-author {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .book p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.8;
+    text-align: left;
+  }
+
+  .books-note {
+    margin-top: 48px;
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 17px;
+    color: var(--ink);
+    padding: 24px;
+    border-top: 1px solid var(--cream-dark);
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  /* ===== COMMUNITY ===== */
+  .community-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 600px) {
+    .community-grid { grid-template-columns: 1fr; }
+  }
+
+  .community-card {
+    padding: 40px 32px;
+    background: var(--white);
+  }
+
+  .community-card h4 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .community-card h4 span {
+    color: var(--gold);
+    font-size: 14px;
+    display: block;
+    margin-bottom: 4px;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+
+  .community-card p {
+    color: var(--gray);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* ===== COMPETITION ===== */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 600px) {
+    .comp-grid { grid-template-columns: 1fr; }
+  }
+
+  .comp-card {
+    padding: 36px 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .comp-card h4 {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .comp-card p {
+    color: var(--gray-light);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .comp-quote {
+    margin-top: 48px;
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    color: var(--cream);
+    font-style: italic;
+    padding: 32px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  /* ===== FAQ ===== */
+  .faq-item {
+    border-bottom: 1px solid var(--cream-dark);
+    padding: 32px 0;
+  }
+
+  .faq-q {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .faq-q span {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .faq-a {
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.8;
+    padding-left: 48px;
+  }
+
+  /* ===== ENROLL ===== */
+  .enroll-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin: 48px 0 64px;
+  }
+
+  @media (max-width: 768px) {
+    .enroll-steps { grid-template-columns: 1fr; }
+  }
+
+  .enroll-step {
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--white);
+    position: relative;
+  }
+
+  .enroll-step-num {
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0 auto 20px;
+  }
+
+  .enroll-step h4 {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .enroll-step p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  .enroll-email {
+    text-align: center;
+    padding: 48px;
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .enroll-email h4 {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .enroll-email a {
+    color: var(--gold);
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 4px;
+    word-break: break-all;
+  }
+  @media (max-width: 480px) {
+    .enroll-email a { font-size: 16px; }
+  }
+
+  .enroll-email a:hover {
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+
+  .enroll-email p {
+    margin-top: 16px;
+    color: var(--gray-light);
+    font-size: 14px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--ink);
+    color: var(--gray);
+    text-align: center;
+    padding: 48px 24px;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  footer .tagline {
+    color: var(--gold);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(26,26,46,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  nav.visible { opacity: 1; }
+
+  nav .logo {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  nav .nav-links a {
+    color: var(--gray-light);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s;
+  }
+
+  nav .nav-links a:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 768px) {
+    nav .nav-links { display: none; }
+  }
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">TRADER GROWTH</div>
+  <div class="nav-links">
+    <a href="#pain">正视</a>
+    <a href="#systems">系统</a>
+    <a href="#steps">流程</a>
+    <a href="#coach">教练</a>
+    <a href="#books">著作</a>
+    <a href="#faq">问答</a>
+    <a href="#enroll">入营</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-badge">TRADER GROWTH PROGRAM · 2027</div>
+  <h1>交易员成长计划</h1>
+  <p class="hero-subtitle">掌握一套系统，明确一个逻辑，收获一份信心</p>
+  <a href="#enroll" class="hero-cta">了解入营</a>
+  <div class="hero-scroll">向下滚动 ↓</div>
+</section>
+
+<!-- PAIN -->
+<section id="pain">
+  <div class="section-num">01</div>
+  <div class="section-label">PAIN · 正视</div>
+  <h2>这几年，你是不是也在<em>原地打转</em>？</h2>
+
+  <div class="pain-grid">
+    <div class="pain-item">
+      <div class="pain-item-num">LOG 01</div>
+      <p>指标加了十几个，盘一动，还是下不了手。</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-item-num">LOG 02</div>
+      <p>学了四五套方法，一套都没练透——每套都差「下一次」。</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-item-num">LOG 03</div>
+      <p>夜里打开看盘软件，白天跟人说「我就快摸到门了」。</p>
+    </div>
+    <div class="pain-item">
+      <div class="pain-item-num">LOG 04</div>
+      <p>赢两单觉得自己悟透了，连亏三天又开始到处找战法。</p>
+    </div>
+  </div>
+
+  <div class="pain-conclusion">
+    <p>不是你不够努力。是手里，没有一套被自己验证过的系统。</p>
+  </div>
+</section>
+
+<!-- SYSTEMS -->
+<section class="cream" id="systems">
+  <div class="section-inner">
+    <div class="section-num">02</div>
+    <div class="section-label">THESIS · 纵练</div>
+    <h2>一招鲜，吃遍天<br><em>一套系统纵向训练</em></h2>
+    <p style="color: var(--gray); margin-bottom: 16px;">2027 年起，训练营开设两大交易系统。选定一套，集中精力，深度精进。</p>
+    <p style="color: var(--gray); font-size: 14px; margin-bottom: 32px;">分心是交易中极高的成本。一套系统只有彻底练透，执行与持仓才能稳定。</p>
+
+    <div class="systems-grid">
+      <div class="system-card">
+        <h3>趋势系统</h3>
+        <span class="tag">SYSTEM A · TREND</span>
+        <p>围绕吸筹、趋势推进与派发转折，识别结构、跟随主升，并在趋势走坏时依规则离场。</p>
+        <div class="system-flow">
+          学基础 <span>→</span> 写规则 <span>→</span> 统计验证 <span>→</span> 实盘落地
+        </div>
+        <div class="system-fit">
+          <strong>适合：</strong>能耐心等待结构成形、愿意跟随趋势，并严格执行持仓与离场规则的人。
+        </div>
+      </div>
+
+      <div class="system-card">
+        <h3>区间波段系统</h3>
+        <span class="tag">SYSTEM B · RANGE</span>
+        <p>识别箱体边界与区间节奏，在结构清晰的震荡行情中等待机会、执行波段交易。</p>
+        <div class="system-flow">
+          学基础 <span>→</span> 写规则 <span>→</span> 统计验证 <span>→</span> 实盘落地
+        </div>
+        <div class="system-fit">
+          <strong>适合：</strong>时间相对宽裕、反应敏捷，并能在区间内保持耐心与纪律的人。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section id="steps">
+  <div class="section-num">03</div>
+  <div class="section-label">PROCESS · 四步</div>
+  <h2>半年走四步，<em>四步见实盘</em></h2>
+  <p style="color: var(--gray); margin-bottom: 32px;">不管选择哪套系统，训练流程一模一样。</p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <h4>学基础</h4>
+      <p>先学你所选策略的基础——懂它为什么赚钱，也懂它什么时候亏。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <h4>写规则</h4>
+      <p>把策略转化为可执行的规则，进场、持仓、离场，每条都要写得清楚。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <h4>统计验证</h4>
+      <p>用历史数据回测你的规则，知道胜率、盈亏比、最大回撤。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <h4>实盘落地</h4>
+      <p>小资金验证，逐步放大。规则不变，心态稳住。</p>
+    </div>
+  </div>
+</section>
+
+<!-- HONESTY -->
+<section class="dark" id="honesty">
+  <div class="section-inner">
+    <div class="section-num">04</div>
+    <div class="section-label">HONESTY · 不卖</div>
+    <h2>先说清楚：<br><em>我们不卖什么</em></h2>
+
+    <div class="honesty-list">
+      <div class="honesty-item">
+        <div class="honesty-no">01</div>
+        <div class="honesty-content">
+          <h4>不晒收益率曲线</h4>
+          <p>晒曲线的招生套话，我们太熟悉它是哪一套了。曲线证明不了你的系统，只证明他的截图手艺。</p>
+        </div>
+      </div>
+      <div class="honesty-item">
+        <div class="honesty-no">02</div>
+        <div class="honesty-content">
+          <h4>不承诺赚钱、保本、月收益百分之几</h4>
+          <p>市场上敢承诺收益的，训练营教的第一课就是：离他远点。</p>
+        </div>
+      </div>
+      <div class="honesty-item">
+        <div class="honesty-no">03</div>
+        <div class="honesty-content">
+          <h4>不教一夜翻倍、抓涨停、日内超短</h4>
+          <p>训练营明面上的立场：戒掉日内交易。来学一日十单的，我们不收。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="honesty-deliver">
+      <h4>我们交付的只有三样</h4>
+      <p>一套属于你自己的交易系统<br>一份统计验证过的规则<br>一个把人留住、把坏习惯改掉的训练环境</p>
+    </div>
+  </div>
+</section>
+
+<!-- COACH -->
+<section id="coach">
+  <div class="section-num">05</div>
+  <div class="section-label">MENTOR · 领路人</div>
+  <h2>话说得糙，<em>结构看得细</em></h2>
+
+  <div class="coach-content">
+    <div class="coach-name">Edward</div>
+    <div class="coach-title">HEAD COACH · 三十年股票投机操作经验</div>
+
+    <div class="coach-points">
+      <div class="coach-point">
+        <p>三十年市场搏杀，从手工交易时代跨入程序化时代，血亏踩坑换来的教训，全部凝练为真刀真枪的实战干货。</p>
+      </div>
+      <div class="coach-point">
+        <p>聚焦威科夫核心大框架，只抓吸筹与派发背后的主升趋势，剔除花哨指标，绝不掺杂无用杂质。</p>
+      </div>
+      <div class="coach-point">
+        <p>擅长将高深抽象的交易理论转化为最通俗易懂的实战语言，保证听得懂、背得住、用得爽。</p>
+      </div>
+      <div class="coach-point">
+        <p>拒绝毫无价值的心灵鸡汤，直击交易心理的最深处，手把手教会你如何战胜焦虑、包容遗憾，彻底斩断冲动下注与爆仓的根源。</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- BOOKS -->
+<section class="cream" id="books">
+  <div class="section-inner">
+    <div class="section-num">06</div>
+    <div class="section-label">BOOKS · 著作</div>
+    <h2>四本书，<em>三十年功夫</em></h2>
+    <p style="color: var(--gray); margin-bottom: 16px;">教练 Edward（孟洪涛）的威科夫体系著作——一本译作，三本专著。</p>
+    <p style="color: var(--gray); font-size: 14px;">纸上谈兵谈不上，每一本都是从实盘里熬出来的。</p>
+
+    <div class="books-shelf">
+      <div class="book">
+        <div class="book-cover"><img src="images/book-1.png" alt="擒庄秘籍"></div>
+        <h4>擒庄秘籍</h4>
+        <div class="book-author">理查德·D.威科夫 著 · 孟洪涛 译</div>
+        <p>威科夫量价交易技术实战教程，其巅峰之作的全译本。基于 45 年操盘经验写就，详解竹线图、点数图、波线图、位置图四大工具——教练把威科夫原汁原味带进中文世界的译作。</p>
+      </div>
+
+      <div class="book">
+        <div class="book-cover"><img src="images/book-2.png" alt="威科夫操盘法"></div>
+        <h4>威科夫操盘法</h4>
+        <div class="book-author">孟洪涛 著</div>
+        <p>威科夫理论权威专家代表作，华尔街机构交易员培训教程。你看到的量价，都是主力想让你看的——用威科夫方法，看穿聪明钱的操盘真相。</p>
+      </div>
+
+      <div class="book">
+        <div class="book-cover"><img src="images/book-3.png" alt="新威科夫操盘法"></div>
+        <h4>新威科夫操盘法</h4>
+        <div class="book-author">孟洪涛 著 · 珍藏版</div>
+        <p>揭秘对冲基金不愿公开的交易策略。基于市场供求与价量关系的深层次科学研判，让主力的思维逻辑与操盘意图表露无遗。</p>
+      </div>
+
+      <div class="book">
+        <div class="book-cover"><img src="images/book-4.png" alt="量价操盘法"></div>
+        <h4>量价操盘法</h4>
+        <div class="book-author">孟洪涛 著</div>
+        <p>读懂 K 线背后的资金语言，掌握高胜率交易法则。透视主力吸筹、派发全链条，破解趋势启动与反转的终极信号。</p>
+      </div>
+    </div>
+
+    <div class="books-note">
+      训练营的方法论，就长在这四本书的骨架上。
+    </div>
+  </div>
+</section>
+
+
+
+<!-- COMMUNITY -->
+<section class="cream" id="community">
+  <div class="section-inner">
+    <div class="section-num">07</div>
+    <div class="section-label">COMMUNITY · 长大</div>
+    <h2>成长路径<em>与土壤</em></h2>
+    <p style="color: var(--gray); margin-bottom: 32px;">在这片交易场域，方法固然重要，心智修养与认知跃升才是决定终局的根本。</p>
+
+    <div class="community-grid">
+      <div class="community-card">
+        <h4><span>思想维度</span>赢家视角</h4>
+        <p>重塑交易者的底层思维模式与处事哲学。若无法确立高屋建瓴的全局视角，再精妙的技术方法也难以形成合力。</p>
+      </div>
+      <div class="community-card">
+        <h4><span>心理维度</span>修己功课</h4>
+        <p>聚焦交易执行中的人性考验。直面情绪波动，严守操作纪律，建立强大的心理韧性。</p>
+      </div>
+      <div class="community-card">
+        <h4><span>训练生态</span>实战阵地</h4>
+        <p>依托长期沉淀的互动社区，汇聚众多资深交易学员。每日深度交流、复盘碰撞，为新进者呈现完整直观的避坑指南与成长轨迹。</p>
+      </div>
+      <div class="community-card">
+        <h4><span>社群文化</span>知行合一</h4>
+        <p>将日常讨论视为不可或缺的炼金过程。要求学员敢于晒单分析、拆解逻辑，通过将交易思路表达透彻，倒逼盘面执行的精准与果断。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITION -->
+<section class="dark" id="competition">
+  <div class="section-inner">
+    <div class="section-num">08</div>
+    <div class="section-label">COMPETITION · 选拔赛</div>
+    <h2>不是先看谁赚得快，<br>先看谁<em>守得住风险</em></h2>
+    <p style="color: var(--gray-light); margin-bottom: 32px;">顶尖的交易竞技，绝非靠侥幸追求暴利，而是比拼谁能在风浪中稳健筑起风险防护墙。</p>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <h4>ACCOUNT · 账户</h4>
+        <p>初始专属模拟账户，全面还原大体量运作视角。</p>
+      </div>
+      <div class="comp-card">
+        <h4>RISK · 风控</h4>
+        <p>内置 8 大严苛风控规则，系统全程实时监测评估，违规无所遁形。</p>
+      </div>
+      <div class="comp-card">
+        <h4>REPLAY · 盘面</h4>
+        <p>基于历史 K 线逐帧推演，置身当时行情，全方位检验决策力、纪律性与风险边界。</p>
+      </div>
+      <div class="comp-card">
+        <h4>REWARD · 晋级</h4>
+        <p>成功通过终极风控考验的精英交易员，将获得优先入场序列与专属成长扶持体系。</p>
+      </div>
+    </div>
+
+    <div class="comp-quote">
+      "评估系统将精确映射每一次决策：究竟是在恪守边界，还是在盲目博弈。"
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-num">09</div>
+  <div class="section-label">Q & A · 问答</div>
+  <h2>他们会问的，<em>先答了</em></h2>
+
+  <div class="faq-item">
+    <div class="faq-q"><span>Q01</span>我完全没做过交易，能跟得上吗？</div>
+    <div class="faq-a">能，但第一条军规是别急。先把训练营的环境逛熟，把基础课从头吃透，看明白老学员怎么学再动手。着急入门的反而走不远——这是训练营这些年的经验。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span>Q02</span>你们能保证赚钱吗？</div>
+    <div class="faq-a">不能，也不承诺。这种话我们不好意思说，也不让你听。卖的是训练：系统、统计和心智，一个都不少；但收益率，市场上谁也不敢替你签。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span>Q03</span>两套系统，我是不是都要学？</div>
+    <div class="faq-a">这两套系统相辅相成，构建了完整的交易体系。入营时先根据自身的时间、性格与资金体量，挑选最契合的一套系统作为突破口。集中精力把这套策略彻底吃透，打牢核心盈利基本盘之后，若精力充裕，便可顺理成章地解锁另一套系统。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span>Q04</span>白天是上班族，时间够吗？</div>
+    <div class="faq-a">完全足够。策略的挑选本就是为了与生活作息相契合。体系内的策略聚焦于趋势追踪与结构确认，盘面逻辑清晰，无需全天候守在屏幕前盯盘。日常工作中只需安排早晚的业余时光完成复盘与决策下订单。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span>Q05</span>一套系统要练多久？</div>
+    <div class="faq-a">半年：学基础 → 写规则 → 统计验证 → 实盘落地。四步走完，系统才能算你自己的。跳过统计验证的那一步，训练就不算完成。</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span>Q06</span>怎么知道自己「毕业」了？</div>
+    <div class="faq-a">衡量毕业的标准非常具体且扎实：完整建立起一套属于自己的交易系统，并完成严谨的历史数据统计与逻辑验证，最终在实盘执行中拿到满意的真实反馈。能够清晰阐述操作逻辑，用详实的数据支撑交易确信，并且在实盘运作里展现出稳定的执行效果。</div>
+  </div>
+</section>
+
+<!-- LEARNING -->
+<section class="cream" id="learning">
+  <div class="section-inner">
+    <div class="section-num">10</div>
+    <div class="section-label">LEARNING · 授课</div>
+    <h2>学习方式<em>与授课安排</em></h2>
+    <p style="color: var(--gray); margin-bottom: 48px;">线上学习，直播授课与日常研讨持续衔接。采用全线上数字化教学模式，搭载专属训练平台与高互动性学习交流平台，实现随时随地的深度沉淀。</p>
+
+    <div class="systems-grid">
+      <div class="system-card">
+        <h3>核心直播授课</h3>
+        <span class="tag">LIVE · 直播</span>
+        <p>统一安排在北京时间晚上 8:30 以后进行，方便上班族及不同时区的学员完备参与，实时吸收干货。</p>
+      </div>
+      <div class="system-card">
+        <h3>日常互动研讨</h3>
+        <span class="tag">DISCUSS · 研讨</span>
+        <p>非直播时段均可在线交流，提供持续的答疑解惑、逻辑拆解与思路碰撞，打造全天候伴随式的成长环境。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENROLL -->
+<section id="enroll">
+  <div class="section-num">11</div>
+  <div class="section-label">ENROLL · 入营</div>
+  <h2>入营之前，<em>先聊一聊</em></h2>
+  <p style="color: var(--gray); margin-bottom: 32px;">搞清楚适不适合，比掏钱重要。</p>
+
+  <div class="enroll-steps">
+    <div class="enroll-step">
+      <div class="enroll-step-num">1</div>
+      <h4>深度沟通</h4>
+      <p>仔细了解训练营运作模式与规则细节，双方进行充分交流。厘清彼此预期与契合度。</p>
+    </div>
+    <div class="enroll-step">
+      <div class="enroll-step-num">2</div>
+      <h4>明确系统</h4>
+      <p>综合考量个人可支配时间、性格特征及资金配置，精准选定专属系统。</p>
+    </div>
+    <div class="enroll-step">
+      <div class="enroll-step-num">3</div>
+      <h4>入营训练</h4>
+      <p>正式加入社区阵地，在半年的训练周期内锤炼执行，见证心智与技能的蜕变。</p>
+    </div>
+  </div>
+
+  <div class="enroll-email">
+    <h4>EMAIL · 报名咨询</h4>
+    <a href="mailto:wetraders@outlook.com">wetraders@outlook.com</a>
+    <p>请发邮件说明您当前交易概况与每日投入时段，我们将协助评估契合度并规划匹配的系统方向。</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="tagline">手里有一个系统，心里有一份确信。</div>
+  <p>TRADER GROWTH PROGRAM · 威科夫趋势交易系统 · 2027</p>
+  <p style="margin-top: 8px; color: var(--gray-light);">训练营在 Microsoft Teams 上运行</p>
+</footer>
+
+<script>
+  // Show navbar on scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      navbar.classList.add('visible');
+    } else {
+      navbar.classList.remove('visible');
+    }
+  });
+</script>
+
+</body>
+</html>
