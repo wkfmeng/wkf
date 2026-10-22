@@ -1550,41 +1550,8 @@
     <p>请发邮件说明您当前交易概况与每日投入时段，我们将协助评估契合度并规划匹配的系统方向。</p>
   </div>
 
-  <div class="enroll-form">
-    <h4>咨询 · 了解体验营</h4>
-    <p>填写以下信息，了解体验营详情</p>
-    <form class="native-form" id="consultForm">
-      <div class="nf-field">
-        <label for="c-name">姓名</label>
-        <input type="text" id="c-name" name="姓名" placeholder="怎么称呼您" autocomplete="name">
-      </div>
-      <div class="nf-field">
-        <label for="c-email">邮箱 <span class="req">必填</span></label>
-        <input type="email" id="c-email" name="邮箱" required placeholder="我们会通过邮件与您联系" autocomplete="email">
-      </div>
-      <div class="nf-field">
-        <label for="c-phone">手机号</label>
-        <input type="tel" id="c-phone" name="手机号" placeholder="选填，方便短信联系" autocomplete="tel">
-      </div>
-      <div class="nf-field">
-        <label>感兴趣的方向 <span class="req">必填</span></label>
-        <div class="radio-pills">
-          <label><input type="radio" name="感兴趣的方向" value="趋势学习" checked><span>趋势学习</span></label>
-          <label><input type="radio" name="感兴趣的方向" value="交易系统"><span>交易系统</span></label>
-          <label><input type="radio" name="感兴趣的方向" value="训练系统"><span>训练系统</span></label>
-          <label><input type="radio" name="感兴趣的方向" value="量价基础学习"><span>量价基础学习</span></label>
-          <label><input type="radio" name="感兴趣的方向" value="点数图原理和应用"><span>点数图原理和应用</span></label>
-          <label><input type="radio" name="感兴趣的方向" value="都想了解"><span>都想了解</span></label>
-        </div>
-      </div>
-      <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off">
-      <input type="hidden" name="_subject" value="【咨询】交易员成长计划体验营">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <button type="submit" class="gold-btn">提交咨询 →</button>
-      <p class="nf-note">提交后我们会通过邮件与您联系</p>
-      <p class="nf-msg" id="consultMsg" role="status"></p>
-    </form>
+    <div style="text-align:center; margin-top:30px;">
+    <a class="gold-btn" href="tiyan.html">查看体验营详情 →</a>
   </div>
 </section>
 
@@ -1597,47 +1564,8 @@
 </footer>
 
 
-<script>
-function initNativeForm(formId, msgId) {
-  var form = document.getElementById(formId);
-  if (!form) return;
-  var msg = document.getElementById(msgId);
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    var btn = form.querySelector('button[type=submit]');
-    btn.disabled = true;
-    var original = btn.textContent;
-    btn.textContent = '\u63d0\u4ea4\u4e2d\u2026';
-    fetch('https://formsubmit.co/ajax/wyckoffcpf@gmail.com', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
-    }).then(function (r) { return r.json(); })
-    .then(function () {
-      form.innerHTML = '<div class="nf-success"><h4>\u5df2\u6536\u5230 \u2713</h4><p>\u611f\u8c22\u60a8\u7684\u4fe1\u4efb\uff0c\u6211\u4eec\u4f1a\u5c3d\u5feb\u901a\u8fc7\u90ae\u4ef6\u4e0e\u60a8\u8054\u7cfb\u3002</p><a class="gold-btn" href="tiyan.html">\u67e5\u770b\u4f53\u9a8c\u8425\u8be6\u60c5 \u2192</a></div>';
-    })
-    .catch(function () {
-      btn.disabled = false;
-      btn.textContent = original;
-      msg.className = 'nf-msg err';
-      msg.textContent = '\u63d0\u4ea4\u5931\u8d25\uff0c\u8bf7\u68c0\u67e5\u7f51\u7edc\u540e\u91cd\u8bd5\uff0c\u6216\u76f4\u63a5\u53d1\u90ae\u4ef6\u5230 wyckoffcpf@gmail.com';
-    });
-  });
-}
-</script>
-<script>
-  // Show navbar on scroll
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-      navbar.classList.add('visible');
-    } else {
-      navbar.classList.remove('visible');
-    }
-  });
-  initNativeForm('consultForm', 'consultMsg');
-</script>
+
+
 
 </body>
 </html>
