@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:,">
+<title>伴读计划介绍 · 《新威科夫操盘法》作者伴读</title>
+<style>
+:root{
+  --bg:#0b111b; --panel:#141e2d; --panel2:#192539; --panel3:#1d2b3f; --deep:#0d1726;
+  --border:#344256; --border2:#435367;
+  --green:#8ccfce; --gold:#eccb84; --gold-soft:#f6dfa9; --gold-dim:#c4a86b;
+  --ink:#f2f5fa; --muted:#9aacc0; --soft:#dce5f2; --faint:#879cb2;
+  --red:#efa7a3; --ok:#9ad7b5;
+  --r:13px; --reader:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.7}
+a{color:var(--green)}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+::selection{background:#b18b4399;color:#fff}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(14px,3vw,32px)}
+
+/* ---------- 顶栏：和课程页同一套 ---------- */
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:12px;min-height:66px;
+  background:#0d1725f7;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);
+  padding:9px clamp(12px,2.5vw,30px)}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.04em}
+.brandmark{width:34px;height:34px;border:1px solid #9b8249;background:#373321;color:var(--gold-soft);
+  border-radius:9px;text-align:center;line-height:32px;font-size:20px;flex-shrink:0}
+.brand small{display:block;font-size:10px;color:var(--muted);letter-spacing:.16em;font-weight:400}
+.topbar .spacer{flex:1}
+.topnav{display:flex;gap:6px;align-items:center}
+.topnav a{color:#bbc8d8;text-decoration:none;font-size:13px;padding:9px 10px;border-radius:8px;min-height:36px;display:inline-flex;align-items:center}
+.topnav a:hover{background:#29374d;color:var(--ink)}
+.pill{display:inline-flex;border:1px solid var(--border2);border-radius:99px;color:#c4d2e1;
+  padding:5px 11px;font-size:11.5px;white-space:nowrap}
+@media(max-width:760px){.topnav a.hideS{display:none}.pill{display:none}}
+
+/* ---------- 开头 ---------- */
+.hero{padding:52px 0 8px}
+.crumb{color:var(--muted);font-size:12.5px}
+.hero h1{font-size:clamp(28px,4.6vw,44px);line-height:1.32;margin:14px 0 16px;font-weight:700;max-width:20em}
+.hero h1 .gold{color:var(--gold)}
+.hero .lead{font-size:clamp(15px,1.8vw,17.5px);line-height:1.95;color:var(--soft);max-width:44em;margin:0 0 14px}
+.hero .lead b{color:var(--ink)}
+.ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 22px;
+  border-radius:9px;text-decoration:none;font-size:15px;border:1px solid var(--border2);
+  background:var(--panel2);color:var(--ink)}
+.btn:hover{border-color:var(--gold)}
+.btn.gold{background:var(--gold);border-color:var(--gold-soft);color:#18283b;font-weight:700}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:30px 0 6px}
+.fact{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px}
+.fact b{display:block;font-size:24px;color:var(--gold);line-height:1.2;font-variant-numeric:tabular-nums}
+.fact span{font-size:12.5px;color:var(--muted);line-height:1.6;display:block;margin-top:4px}
+@media(max-width:820px){.facts{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- 通用区块 ---------- */
+section.block{padding:44px 0 6px}
+.blockHead{margin-bottom:18px}
+.blockHead h2{font-size:clamp(21px,2.6vw,27px);margin:0 0 8px;line-height:1.4}
+.blockHead p{color:var(--muted);margin:0;max-width:46em;line-height:1.9}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:22px}
+.panel h3{margin:0 0 10px;font-size:17px}
+.panel p{line-height:1.9;color:var(--soft);margin:0 0 12px}
+.panel p:last-child{margin-bottom:0}
+
+/* ---------- 样课演示（真实界面复刻） ---------- */
+.demoShell{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--deep)}
+.demoTop{display:flex;align-items:center;gap:10px;background:#101926;border-bottom:1px solid var(--border);
+  padding:10px 14px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.demoTop b{color:var(--soft);font-size:13.5px}
+.demoTop .tag{margin-left:auto}
+.demoGrid{display:grid;grid-template-columns:196px minmax(0,1fr);min-height:0}
+.demoSide{border-right:1px solid var(--border);background:#101926;padding:16px 12px}
+.demoSide h4{color:var(--muted);font-size:11px;font-weight:600;letter-spacing:.12em;margin:2px 8px 10px}
+.progLine{font-size:12px;color:var(--muted);margin:0 8px 10px}
+.progLine b{color:var(--gold)}
+.catItem{display:flex;gap:8px;align-items:baseline;padding:9px;border-radius:8px;color:#bbc8d8;
+  font-size:12.5px;line-height:1.5;text-decoration:none;min-height:36px}
+.catItem .no{color:var(--faint);font-size:11px;min-width:19px;font-variant-numeric:tabular-nums}
+.catItem .nm{flex:1}
+.catItem.current{background:#373321;color:#f7dea7;font-weight:700}
+.catItem.current .no{color:var(--gold)}
+.catItem .st{font-size:11px;color:var(--muted);white-space:nowrap}
+.catItem .st.done{color:var(--green)}
+.catItem .st.now{color:var(--gold)}
+.demoMain{padding:18px clamp(14px,2.4vw,26px) 22px;min-width:0}
+.demoMain .crumb2{color:var(--muted);font-size:12px}
+.demoMain h3{font-size:clamp(18px,2.2vw,22px);margin:4px 0 6px;line-height:1.4}
+.demoMain .deck{font-size:13.5px;color:var(--muted);line-height:1.85;margin:0 0 16px}
+.worksteps{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.stepBtn{flex:1 1 120px;min-height:52px;border:1px solid var(--border);background:var(--panel2);
+  border-radius:9px;padding:10px;text-align:left;line-height:1.45;color:var(--ink);font-size:14px}
+.stepBtn small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.stepBtn .stepNum{color:var(--gold);font-weight:700;margin-right:6px}
+.stepBtn.active{background:#3c3423;border-color:var(--gold-dim);box-shadow:inset 0 0 0 1px #9d885f}
+.studyGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:14px;align-items:start}
+.mapCard{background:var(--panel);border:4px solid var(--border);border-radius:9px;overflow:hidden}
+.mapBar{display:flex;justify-content:space-between;gap:8px;background:var(--panel2);padding:9px 12px;
+  font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)}
+.mapBar b{color:var(--soft)}
+.maprows{padding:14px;background:#101926}
+.maprow{border:1px solid var(--border);border-left:4px solid var(--green);border-radius:8px;
+  padding:11px 14px;margin-bottom:10px;background:var(--panel2);color:var(--soft)}
+.maprow:last-child{margin-bottom:0}
+.maprow b{display:block;font-size:14px;color:var(--gold-soft);margin-bottom:3px}
+.maprow span{font-size:12.5px;line-height:1.7;color:var(--muted)}
+.maprow.lead{border-left-color:var(--gold)}
+.teacher{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.teacherHead{padding:15px 18px 11px;border-bottom:1px solid var(--border)}
+.teacherHead small{font-size:11px;color:var(--green);letter-spacing:.1em}
+.teacherHead h4{font-size:18px;margin:4px 0 0;line-height:1.4}
+.teacherBody{padding:14px 18px 6px;font-size:var(--reader);line-height:1.95;color:var(--soft)}
+.teacherBody p{margin:0 0 12px}
+.quote{border-left:3px solid var(--gold);background:#222c3a;border-radius:0 8px 8px 0;
+  margin:12px 0;padding:12px 13px;line-height:1.9}
+.quote small{display:block;margin-top:6px;color:var(--muted);font-size:11.5px}
+.teacherFoot{display:flex;align-items:center;gap:10px;padding:12px 16px;border-top:1px solid var(--border)}
+.teacherFoot .sp{flex:1;text-align:center;color:var(--muted);font-size:12px}
+.ui-btn{background:var(--panel2);border:1px solid var(--border);padding:9px 14px;border-radius:8px;
+  color:var(--ink);font-size:13px;min-height:40px}
+.ui-btn:hover{background:#29374d}
+.ui-btn:disabled{opacity:.45;cursor:not-allowed}
+.gold-btn{background:var(--gold);border:1px solid var(--gold-soft);color:#18283b;font-weight:700}
+.gold-btn:hover{background:var(--gold)}
+@media(max-width:900px){.demoGrid{grid-template-columns:1fr}.demoSide{display:none}.studyGrid{grid-template-columns:1fr}}
+
+/* ---------- 试答 ---------- */
+.quizBox{margin-top:16px}
+.g-label{color:var(--gold);font-size:12.5px;letter-spacing:.12em;margin-bottom:10px;font-weight:700}
+.quizBox h4{font-size:16.5px;margin:0 0 14px;line-height:1.6}
+.opt{display:block;width:100%;text-align:left;padding:13px 15px;margin:0 0 9px;background:var(--panel2);
+  border:1px solid var(--border);color:var(--ink);border-radius:9px;font-size:15px;line-height:1.6;min-height:48px}
+.opt:hover{border-color:var(--border2)}
+.opt.sel{border-color:var(--gold);background:#303024}
+.opt.correct{border-color:var(--ok);background:#172c29}
+.opt.wrong{border-color:var(--red);background:#242a30}
+.opt:disabled{cursor:default}
+.feedback{display:none;margin-top:12px;padding:14px 16px;background:#172c29;color:var(--soft);
+  border-left:4px solid var(--ok);font-size:14px;line-height:1.9;border-radius:0 8px 8px 0}
+.feedback.show{display:block}
+.feedback.bad{border-left-color:var(--red);background:#1d232c}
+.feedback .src{display:block;margin-top:6px;color:var(--muted);font-size:11.5px}
+.checkRow{margin-top:12px;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+
+/* ---------- 流程 ---------- */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.flowStep{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.flowStep .n{color:var(--gold);font-weight:700;font-size:13px}
+.flowStep h3{font-size:15.5px;margin:6px 0 7px}
+.flowStep p{font-size:13px;color:var(--muted);line-height:1.8;margin:0}
+@media(max-width:1000px){.flow{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.flow{grid-template-columns:1fr}}
+
+/* ---------- 功能 ---------- */
+.featGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.feat{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:18px}
+.feat h3{font-size:15.5px;margin:0 0 8px;color:var(--gold-soft)}
+.feat p{font-size:13.5px;color:var(--muted);line-height:1.85;margin:0}
+@media(max-width:900px){.featGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.featGrid{grid-template-columns:1fr}}
+
+/* ---------- 两栏 ---------- */
+.twoCol{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:820px){.twoCol{grid-template-columns:1fr}}
+.ruleList{list-style:none;margin:0;padding:0}
+.ruleList li{padding:11px 0;border-top:1px solid var(--border);line-height:1.85;color:var(--soft);font-size:14.5px}
+.ruleList li:first-child{border-top:none;padding-top:2px}
+.ruleList b{color:var(--gold-soft)}
+.segList{list-style:none;margin:0;padding:0}
+.segList li{display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--border);line-height:1.7}
+.segList li:first-child{border-top:none;padding-top:2px}
+.segList .segNo{flex-shrink:0;color:var(--gold);font-weight:700;font-variant-numeric:tabular-nums}
+.segList .segTx b{display:block;font-size:14.5px}
+.segList .segTx span{font-size:12.5px;color:var(--muted)}
+
+/* ---------- 开始 ---------- */
+.startSteps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:820px){.startSteps{grid-template-columns:1fr}}
+details.faq{border:1px solid var(--border);background:var(--panel);border-radius:11px;padding:6px 18px;margin-bottom:10px}
+details.faq summary{font-weight:650;cursor:pointer;padding:12px 0;min-height:44px;display:flex;align-items:center}
+details.faq p{color:var(--muted);line-height:1.9;margin:0 0 14px;font-size:14.5px}
+footer{margin-top:56px;border-top:1px solid var(--border);padding:26px 0 44px;color:var(--muted);font-size:13px;line-height:1.9}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+@media(prefers-contrast:more){:root{--muted:#c4d5e7;--border:#8699b0;--ink:#ffffff}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><span class="brandmark">新</span><div>新威科夫<small>作 者 伴 读</small></div></div>
+  <div class="spacer"></div>
+  <nav class="topnav" aria-label="本页导航">
+    <a href="#demo">样课</a>
+    <a href="#flow" class="hideS">怎么读</a>
+    <a href="#features" class="hideS">界面功能</a>
+    <a href="#start">如何开始</a>
+  </nav>
+  <span class="pill">伴读计划 · 介绍</span>
+</header>
+
+<div class="wrap">
+
+  <!-- 开头 -->
+  <div class="hero">
+    <div class="crumb">《新威科夫操盘法》 · 作者伴读计划</div>
+    <h1>这本书，由作者本人<br>陪你<span class="gold">一课一课</span>读完</h1>
+    <p class="lead">《新威科夫操盘法》不好自己读：图多、术语多，很多判断只差一句条件，读偏了自己也不知道。<b>伴读计划</b>把全书拆成一课一课的网页课程——作者亲自带看每一张图、每一处判断：先让你自己猜，再回到原文看老师怎么说，再提醒你最容易看错的地方，最后用自测确认你真读懂了。</p>
+    <p class="lead">不用装软件，不用下载图片。课程就是网页，手机、电脑打开就能读，字看得清，图能放大——这封邮件附的，就是这套界面的介绍页，下面还有一节可以亲手点的样课。</p>
+    <div class="ctaRow">
+      <a class="btn gold" href="#demo">先试一节样课</a>
+      <a class="btn" href="#start">看如何开始</a>
+    </div>
+    <div class="facts" aria-label="计划概况">
+      <div class="fact"><b>33 课</b><span>第一章已全部做完，分四段发出，后续章节按章推进</span></div>
+      <div class="fact"><b>4 步带看</b><span>每课固定节奏：先看什么 → 老师怎么说 → 容易看错什么 → 对照着看</span></div>
+      <div class="fact"><b>每课 3 问</b><span>开课先猜 1 题，节末自测 2 题，答案都附原文依据和错因讲解</span></div>
+      <div class="fact"><b>逐句核对</b><span>每处引文、每个要点、每道题的答案，都对照原书核过</span></div>
+    </div>
+  </div>
+
+  <!-- 样课 -->
+  <section class="block" id="demo">
+    <div class="blockHead">
+      <h2>先看一课长什么样</h2>
+      <p>下面不是截图，是用课程同款界面排出来的一节真课——第一章第 1 课。右边的「作者带看」可以点上下步切换，最下面的题可以真答，答完当场对答案。正式课程里，每一课都是这个样子。</p>
+    </div>
+
+    <div class="demoShell">
+      <div class="demoTop"><b>样课 · 第一章第 1 课</b><span>章首 · 主力在成交量上的动作</span><span class="tag pill">与正式课程同一界面</span></div>
+      <div class="demoGrid">
+        <aside class="demoSide" aria-label="样课目录示意">
+          <h4>第一章 · 本段课目</h4>
+          <p class="progLine">本段进度：已读 <b>1 / 7</b> 课</p>
+          <a class="catItem current" href="#demo"><span class="no">01</span><span class="nm">章首 · 主力在成交量上的动作</span><span class="st now">在读</span></a>
+          <a class="catItem" href="#demo"><span class="no">02</span><span class="nm">图 1.2 两次回调，两种供应</span></a>
+          <a class="catItem" href="#demo"><span class="no">03</span><span class="nm">图 1.3 超卖之后不能抄底</span></a>
+          <a class="catItem" href="#demo"><span class="no">04</span><span class="nm">图 1.3 恐慌抛售和反弹遇阻</span></a>
+          <a class="catItem" href="#demo"><span class="no">05</span><span class="nm">图 1.3 死角、震仓和高支撑</span></a>
+          <a class="catItem" href="#demo"><span class="no">06</span><span class="nm">图 1.4 吸筹结束和阻力吸收</span></a>
+          <a class="catItem" href="#demo"><span class="no">07</span><span class="nm">第二节 · 三条原则落到操作上</span></a>
+        </aside>
+
+        <div class="demoMain">
+          <div class="crumb2">新威科夫操盘法 / 第一章 / 章首</div>
+          <h3>章首 · 主力在成交量上的动作</h3>
+          <p class="deck">本章开头先明确三件事，都是用成交量判断主力在做什么：顶部制造狂热，底部制造恐慌，阻力位吸收卖盘。这一课先把这三件事认清，后面的图都用它们来对照。</p>
+
+          <nav class="worksteps" aria-label="作者带看步骤">
+            <button type="button" class="stepBtn active" data-step="0"><span class="stepNum">01</span>先看什么<small>先看本课结构</small></button>
+            <button type="button" class="stepBtn" data-step="1"><span class="stepNum">02</span>老师怎么说<small>回到原文</small></button>
+            <button type="button" class="stepBtn" data-step="2"><span class="stepNum">03</span>容易看错什么<small>误读提醒</small></button>
+            <button type="button" class="stepBtn" data-step="3"><span class="stepNum">04</span>对照着看<small>和后面的图对照</small></button>
+          </nav>
+
+          <div class="studyGrid">
+            <div class="mapCard" aria-label="本课结构">
+              <div class="mapBar"><b>本课结构（本课无图）</b><span>图 / 结构常驻左侧</span></div>
+              <div class="maprows">
+                <div class="maprow lead"><b>章首 · 先认清三件事</b><span>解读市场只用价格、成交量、走势速度，底层依据是供求关系。章首先点出主力在成交量上最要紧的三个动作。</span></div>
+                <div class="maprow"><b>一、顶部 · 制造狂热</b><span>顶部出现狂热，是主力在吸引大众交易者入市。</span></div>
+                <div class="maprow"><b>二、底部 · 制造恐慌</b><span>底部出现恐慌，是主力在迫使被套的买家割肉卖出。</span></div>
+                <div class="maprow"><b>三、阻力位 · 吸收卖盘</b><span>在阻力位置，买盘持续吸收卖盘，是主力在为突破做准备。</span></div>
+              </div>
+            </div>
+
+            <div class="teacher" aria-label="作者带看">
+              <div class="teacherHead"><small id="stepLabel">带看 01 / 04</small><h4 id="stepTitle">先看什么</h4></div>
+              <div class="teacherBody" id="stepBody"></div>
+              <div class="teacherFoot">
+                <button type="button" class="ui-btn" id="prevStep">上一步</button>
+                <span class="sp" id="stepCount">1 / 4</span>
+                <button type="button" class="ui-btn gold-btn" id="nextStep">下一步</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel quizBox" aria-label="试答一题">
+            <div class="g-label">试一题 · 节末自测（样课选一）</div>
+            <h4>价格跌到底部一带，出现恐慌气氛，被套的买家纷纷割肉。照章首的说法，这股恐慌该怎么判断？</h4>
+            <div id="quizOpts">
+              <button type="button" class="opt" data-ok="1">A · 是主力在迫使被套的买家割肉卖出，为的是在低位收货</button>
+              <button type="button" class="opt" data-ok="0">B · 是大众自己心理素质差，和主力没有关系</button>
+              <button type="button" class="opt" data-ok="0">C · 是坏消息造成的，消息过了恐慌自然就没了</button>
+              <button type="button" class="opt" data-ok="0">D · 说明供应已经彻底枯竭，可以马上抄底</button>
+            </div>
+            <div class="feedback" id="quizFb" role="status"></div>
+            <div class="checkRow">
+              <button type="button" class="ui-btn" id="quizReset" style="display:none">再答一次</button>
+              <button type="button" class="ui-btn gold-btn" id="quizCheck" disabled>对答案</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 流程 -->
+  <section class="block" id="flow">
+    <div class="blockHead">
+      <h2>一课是怎么读下来的</h2>
+      <p>每课都走同五步，节奏固定，不用自己安排顺序。一课读完，要点、自测、疑问都留在这一课里，下次打开接着来。</p>
+    </div>
+    <div class="flow">
+      <div class="flowStep"><span class="n">第 1 步</span><h3>先猜一步</h3><p>开课先出一道题，让你先按自己的理解判断一次。猜错也没关系——先有了自己的判断，再看老师怎么说，哪一步想偏了立刻就显出来。</p></div>
+      <div class="flowStep"><span class="n">第 2 步</span><h3>作者带看四步</h3><p>先看什么、老师怎么说、容易看错什么、对照着看。图常驻在左边，讲解在右边，图下说明随步骤切换，讲到哪一步，说明跟到哪一步。</p></div>
+      <div class="flowStep"><span class="n">第 3 步</span><h3>回到原文核对</h3><p>每个判断都附原书原话和出处（哪一章、哪一页、哪一段），手边有书可以翻到那一页逐字对。</p></div>
+      <div class="flowStep"><span class="n">第 4 步</span><h3>节末自测</h3><p>每课两道题，对完答案不只告诉你对错：为什么对、其他选项错在哪、依据在原书哪一句，全写清楚。</p></div>
+      <div class="flowStep"><span class="n">第 5 步</span><h3>要点与疑问</h3><p>课末收一份本课要点；读时冒出的疑问可以随时记下来，分门别类、能搜索、解决了打勾，不会散失。</p></div>
+    </div>
+  </section>
+
+  <!-- 功能 -->
+  <section class="block" id="features">
+    <div class="blockHead">
+      <h2>界面里有什么</h2>
+      <p>这套界面就是为「对着图读交易书」做的。下面这些，都是正式课程里现在就能用的功能，不是计划中的设想。</p>
+    </div>
+    <div class="featGrid">
+      <div class="feat"><h3>课程目录与进度</h3><p>左侧是全章课目，读过的、答过题的、读完的，各有标记；顶上随时看得到本段读了几课。课与课之间有上一课、下一课，不会迷路。</p></div>
+      <div class="feat"><h3>原图放大看</h3><p>书里的图直接点开全屏放大，能缩放、能拖动，一根 K 线一根 K 线地细看；图下说明跟着带看步骤走，不会看着图找不到讲到哪了。</p></div>
+      <div class="feat"><h3>图与讲解同屏</h3><p>读图课时图固定在左侧不滚动，右边讲解再长，图始终在眼前，不用来回翻页找图。</p></div>
+      <div class="feat"><h3>先猜，再学</h3><p>每课开头的先猜题，就是逼自己先表态。带着表态往下读，和从头到尾被动看，记住的完全不是一回事。</p></div>
+      <div class="feat"><h3>自测讲透错因</h3><p>每道题的讲解都回到原文：对的为什么对，错的选项分别错在把哪句条件丢了、把哪一步做过了头。一眼能看出自己是哪种读法出了问题。</p></div>
+      <div class="feat"><h3>我的疑问</h3><p>疑问可以记多条，能分类、能搜索、能标记已解决，记的时候自动带上当时读到哪一步，回头复习不用重新找上下文。</p></div>
+      <div class="feat"><h3>相关课程</h3><p>每课末尾列出前后呼应的课：这个概念前面在哪讲过、后面在哪展开，点开就跳过去，适合来回对照着看。</p></div>
+      <div class="feat"><h3>原书索引</h3><p>每课标注对应的原书页码和段落名称。课程是伴读，不代替原书——索引就是留给你的对照路口。</p></div>
+      <div class="feat"><h3>字号与专注</h3><p>正文字号三档可调；还有只看图模式和系统高对比度支持。手机上自动改成上下排版，没有横向滚动。</p></div>
+    </div>
+  </section>
+
+  <!-- 规矩 + 进度 -->
+  <section class="block">
+    <div class="twoCol">
+      <div class="panel">
+        <h3>我们守的规矩：原文是准绳</h3>
+        <ul class="ruleList">
+          <li><b>不改意思。</b>要点是对原文的提炼：条件不能丢，程度不能改——书上说「通常」，要点里就不会写成「一定」。</li>
+          <li><b>不往后搬。</b>后面章节才讲的概念，不提前塞进前面的课里，每课只讲本课这一段原文。</li>
+          <li><b>引文逐字。</b>带看里的引号文字都是原书原话，配出处页码，随时可查。</li>
+          <li><b>题目验过。</b>每道题的正确答案、选项标记、讲解里引的原话，三处互相对过才发出来。</li>
+          <li><b>不放全书。</b>课程里只有核对必需的短引句；原书还是要读原书，伴读是陪你读，不是替你读完。</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>现在做到哪了</h3>
+        <ul class="segList">
+          <li><span class="segNo">第 1 段</span><span class="segTx"><b>第 1–7 课 · 章首、第一节、第二节</b><span>主力在成交量上的三个动作，图 1.2 至图 1.4，三条原则</span></span></li>
+          <li><span class="segNo">第 2 段</span><span class="segTx"><b>第 8–15 课 · 第三节、第四节前半</b><span>供求的三态，支撑与阻力的前半部分</span></span></li>
+          <li><span class="segNo">第 3 段</span><span class="segTx"><b>第 16–23 课 · 第四节后半</b><span>冰线与供应线，图 1.7、图 1.8 的进场与离场</span></span></li>
+          <li><span class="segNo">第 4 段</span><span class="segTx"><b>第 24–33 课 · 第五节</b><span>图 1.9 至图 1.12，Spring、SOS / SOW 与震仓</span></span></li>
+        </ul>
+        <p style="margin-top:14px">第一章 33 课已经全部完成并逐课审过。后续章节按同样的标准，一章一章往下做、往下发。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 适合谁 -->
+  <section class="block">
+    <div class="blockHead"><h2>适合谁</h2></div>
+    <div class="twoCol">
+      <div class="panel">
+        <h3>这样的读者，会读得很顺</h3>
+        <p>手里有《新威科夫操盘法》，自己读过一阵，但图上的判断总觉得似懂非懂；或者时间碎，只能每天读一小课，需要有人把顺序和重点排好；或者已经在实盘里用威科夫，最怕的是某个概念从一开始就理解偏了，想跟原文逐句对一遍。</p>
+      </div>
+      <div class="panel">
+        <h3>先说清楚，它不是什么</h3>
+        <p>它不是荐股，也不是行情服务，不给买卖点位；它不是题库——刷题另有专门的系统，伴读里的题目只为确认这一课读懂没有；它也不是把书嚼碎了喂给你：该回到原文的地方，一步都不会替你省。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 开始 -->
+  <section class="block" id="start">
+    <div class="blockHead">
+      <h2>如何开始</h2>
+      <p>这页介绍就是随邮件一起发出的。开始读，只需要三步：</p>
+    </div>
+    <div class="startSteps">
+      <div class="flowStep"><span class="n">第一步</span><h3>打开课程</h3><p>从邮件里打开课程页，浏览器里直接读，不用安装任何软件，也不用注册账号。手机、平板、电脑都可以。</p></div>
+      <div class="flowStep"><span class="n">第二步</span><h3>从第 1 课读起</h3><p>按左侧目录的顺序来：先猜、带看、自测、要点，一课大约一杯茶的时间。读到哪、答到哪，进度会自动留下标记。</p></div>
+      <div class="flowStep"><span class="n">第三步</span><h3>有疑问，先记下来</h3><p>读不懂的地方用课里的「我的疑问」记下，别跳过去。这些疑问就是你真正没读通的地方，也是复习时最先回看的地方。</p></div>
+    </div>
+
+    <div style="margin-top:26px">
+      <details class="faq">
+        <summary>没有这本书，能读吗？</summary>
+        <p>课程本身把每课的判断、引文出处和要点都写全了，没有书也能跟着读。但伴读的设计是陪你读原书，手边有一本，对照原书索引翻到对应页，收获会大得多。</p>
+      </details>
+      <details class="faq">
+        <summary>每天要花多少时间？</summary>
+        <p>按一课一课的节奏来，一课就是一小段原文加一张图上下的内容，适合每天读一到两课。不赶进度，读懂一课再下一课。</p>
+      </details>
+      <details class="faq">
+        <summary>后面的章节什么时候有？</summary>
+        <p>第一章 33 课已经发完。后续章节按章制作，每一课都要过逐句核原文这一关，做好一章发一章，仍通过邮件通知。</p>
+      </details>
+      <details class="faq">
+        <summary>手机上看图会不会不清楚？</summary>
+        <p>不会。课程是网页排版而不是图片，图可以点开全屏放大、双指缩放细看，文字在任何屏幕上都是清楚的——这也是这份介绍不用图片、直接用网页做的原因。</p>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    《新威科夫操盘法》作者伴读计划 · 本页为计划介绍，随邮件发出<br>
+    课程内容以原书为准；引文均标注原书出处，可对照原书查核。
+  </footer>
+
+</div>
+
+<script>
+'use strict';
+var STEPS = [
+  { title: '先看什么', html:
+    '<p>本课没有图，中间是本课结构，只有三行。</p>' +
+    '<p>三行说的是主力在三个位置上的动作：到了顶部，他制造狂热；到了底部，他制造恐慌；价格到了阻力位置，他用买盘把卖盘一点点吸收掉。</p>' +
+    '<p>判断这三件事，用的都是成交量。章首把话说在前面：聪明钱解读市场只用价格、成交量、走势速度三个要素，理论基础是供求关系。顶部和底部往往情绪最热，恰恰要先问一句：这股气氛是谁制造的。</p>' },
+  { title: '老师怎么说', html:
+    '<p>章首列出聪明钱用成交量判断的事情，其中三件讲的全是主力：</p>' +
+    '<div class="quote">“在顶部，识别主力资金是否在制造狂热，吸引大众交易者入市。（用成交量判断）”<small>——原书第一章 · 章首</small></div>' +
+    '<div class="quote">“在底部，识别主力资金是否在制造恐慌，迫使被套的买家割肉卖出。（用成交量判断）”<small>——原书第一章 · 章首</small></div>' +
+    '<div class="quote">“识别主力资金是否正在吸收阻力上的卖盘，并判断是否会突破。（用成交量判断）”<small>——原书第一章 · 章首</small></div>' +
+    '<p>三句各管一个位置。顶部那句，狂热不是天上掉下来的，是主力制造出来吸引人入市的。底部那句，恐慌也是主力制造的——他要低价收货，先逼被套的人把股票割出来。阻力位那句，吸收发生在突破之前：买盘把阻力上的卖盘持续吃掉，吃完了，关口才过得去。</p>' },
+  { title: '容易看错什么', html:
+    '<p>这一课容易看错的地方有三处。</p>' +
+    '<p>第一个，把狂热和恐慌当成大众自己的情绪。老师的说法正相反：顶部的狂热是主力制造出来吸引人入市的，底部的恐慌是主力制造出来逼人卖出的。看到这种气氛，先看清是谁制造的。</p>' +
+    '<p>第二个，看到阻力位有买盘吸收，就以为已经突破了。吸收说的是主力正在为突破做准备，突破还没有发生。准备和突破是两步，这一课只判断第一步。</p>' +
+    '<p>第三个，把三件事分开背。三个位置，一个道理：主力在顶部要卖、在底部要买、在阻力位要过关，成交量上的动作都是围绕他自己的买卖目的。</p>' },
+  { title: '对照着看', html:
+    '<p>这一课的三件事，在这一章里会一件一件对应到图上。</p>' +
+    '<p>底部制造恐慌，在后面图 1.3 的恐慌抛售里看得最清楚：下降趋势走了一段之后，振幅极宽、成交量超高，被套的人就是在那一段被逼着抛出来的。</p>' +
+    '<p>阻力位吸收卖盘，在图 1.4 里有现成的：价格接近区间顶部阻力区，无论阻力区有多少卖单出货，买家都有足够的资金全部吸收，吸收完了，后面的上涨才顺利。</p>' +
+    '<p>顶部制造狂热，本章后面讲抢购高潮的那一节才展开。这一课先认清是谁，后面的课再逐张图对照。</p>' }
+];
+var cur = 0;
+var stepBody = document.getElementById('stepBody');
+var stepTitle = document.getElementById('stepTitle');
+var stepLabel = document.getElementById('stepLabel');
+var stepCount = document.getElementById('stepCount');
+var prevBtn = document.getElementById('prevStep');
+var nextBtn = document.getElementById('nextStep');
+var stepBtns = document.querySelectorAll('.stepBtn');
+function renderStep(i) {
+  cur = Math.max(0, Math.min(STEPS.length - 1, i));
+  stepTitle.textContent = STEPS[cur].title;
+  stepBody.innerHTML = STEPS[cur].html;
+  stepLabel.textContent = '带看 ' + String(cur + 1).padStart(2, '0') + ' / 04';
+  stepCount.textContent = (cur + 1) + ' / ' + STEPS.length;
+  prevBtn.disabled = cur === 0;
+  nextBtn.disabled = cur === STEPS.length - 1;
+  stepBtns.forEach(function (b, bi) { b.classList.toggle('active', bi === cur); });
+}
+stepBtns.forEach(function (b) { b.addEventListener('click', function () { renderStep(Number(b.dataset.step)); }); });
+prevBtn.addEventListener('click', function () { renderStep(cur - 1); });
+nextBtn.addEventListener('click', function () { renderStep(cur + 1); });
+renderStep(0);
+
+/* 样课自测 */
+var opts = document.querySelectorAll('#quizOpts .opt');
+var checkBtn = document.getElementById('quizCheck');
+var resetBtn = document.getElementById('quizReset');
+var fb = document.getElementById('quizFb');
+var done = false;
+opts.forEach(function (b) {
+  b.addEventListener('click', function () {
+    if (done) return;
+    opts.forEach(function (x) { x.classList.remove('sel'); });
+    b.classList.add('sel');
+    checkBtn.disabled = false;
+  });
+});
+checkBtn.addEventListener('click', function () {
+  var sel = document.querySelector('#quizOpts .opt.sel');
+  if (!sel) return;
+  done = true;
+  var right = sel.dataset.ok === '1';
+  opts.forEach(function (x) { x.disabled = true; });
+  sel.classList.add(right ? 'correct' : 'wrong');
+  if (!right) document.querySelector('#quizOpts .opt[data-ok="1"]').classList.add('correct');
+  fb.innerHTML = (right
+    ? '<strong>答对了，是 A。</strong><br>'
+    : '<strong>答错了，正确答案是 A。</strong><br>') +
+    '为什么对：章首把这件事列在用成交量判断的范围里——“在底部，识别主力资金是否在制造恐慌，迫使被套的买家割肉卖出”。恐慌是主力制造的，目的是把被套的人逼出来，他好在低价收货。<br>' +
+    '其他选项错在哪：B 把恐慌归给大众自己的情绪，老师说这股气氛是主力制造的；C 把原因推给消息，章首讲的是主力用成交量制造恐慌，没提消息；D 做过了头——人还在被逼着抛售，货正往外涌，这不是供应枯竭的样子，本章后面图 1.3 里老师还专门说：没看到吸筹的准备过程，不能抄底。' +
+    '<span class="src">依据：原书第一章 · 章首。正式课程里每道题都有这样一段讲解。</span>';
+  fb.classList.toggle('bad', !right);
+  fb.classList.add('show');
+  checkBtn.style.display = 'none';
+  resetBtn.style.display = '';
+});
+resetBtn.addEventListener('click', function () {
+  done = false;
+  opts.forEach(function (x) { x.disabled = false; x.classList.remove('sel', 'correct', 'wrong'); });
+  fb.classList.remove('show', 'bad');
+  fb.innerHTML = '';
+  checkBtn.style.display = '';
+  checkBtn.disabled = true;
+  resetBtn.style.display = 'none';
+});
+</script>
+</body>
+</html>
